@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_1420513155553">
+
+  <display-name>recordstore</display-name>
+
+  <!-- 配置Manager的过滤器 -->
+  <filter>
+    <filter-name>ManagerFilter</filter-name>
+    <filter-class>com.dream.filter.ManagerFilter</filter-class>
+  </filter>
+
+  <!-- 配置事务的过滤器 -->
+  <filter>
+    <filter-name>TransactionFilter</filter-name>
+    <filter-class>com.dream.filter.TransactionFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <!--拦截/pages/manager/的所有资源-->
+    <url-pattern>/pages/manager/*,/manager/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>ManagerFilter</filter-name>
+    <!--拦截所有/manager/下的所有资源servlet资源    -->
+    <url-pattern>/manager/*</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>TransactionFilter</filter-name>
+    <!--所有资源-->
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- 配置用户servlet -->
+  <servlet>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.dream.servlet.UserServlet</servlet-class>
+  </servlet>
+
+  <!-- 配置唱片管理模块servlet -->
+  <servlet>
+    <servlet-name>RecordServlet</servlet-name>
+    <servlet-class>com.dream.servlet.RecordServlet</servlet-class>
+  </servlet>
+
+  <!-- 配置前台首页的servlet -->
+  <servlet>
+    <servlet-name>ClientRecordServlet</servlet-name>
+    <servlet-class>com.dream.servlet.ClientRecordServlet</servlet-class>
+  </servlet>
+
+  <!-- 配置谷歌验证码的Servlet -->
+  <servlet>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  </servlet>
+
+  <!-- 配置购物车的Servlet -->
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>com.dream.servlet.CartServlet</servlet-class>
+  </servlet>
+
+  <!-- 配置订单的Servlet -->
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>com.dream.servlet.OrderServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/userServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RecordServlet</servlet-name>
+    <url-pattern>/manager/recordServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>ClientRecordServlet</servlet-name>
+    <url-pattern>/client/clientRecordServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>KaptchaServlet</servlet-name>
+    <url-pattern>/kaptcha.jpg</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/cartServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/orderServlet</url-pattern>
+  </servlet-mapping>
+
+  <!-- 默认首页配置 -->
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+  </welcome-file-list>
+
+  <!--配置错误信息页面-->
+  <!-- 500 -->
+  <error-page>
+    <error-code>500</error-code>
+    <!-- 要跳转到的页面路径 -->
+    <location>/pages/error/error_500.jsp</location>
+  </error-page>
+
+  <!-- 404 -->
+  <error-page>
+    <error-code>404</error-code>
+    <!-- 要跳转到的页面路径 -->
+    <location>/pages/error/error_404.jsp</location>
+  </error-page>
+
+</web-app>
